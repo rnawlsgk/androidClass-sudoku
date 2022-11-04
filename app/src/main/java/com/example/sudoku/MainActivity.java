@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
 
             for (int j=0;j<9;j++){
                 buttons[i][j] = new Button(this);
-                buttons[i][j].setLayoutParams(layoutParams);
                 buttons[i][j].setTextSize(20);
 
                 int number = boardGenerator.get(i, j);
@@ -45,11 +44,9 @@ public class MainActivity extends AppCompatActivity {
                 if (rand < 6) {
                     buttons[i][j].setText(setnum);
                 }
-
-                tableRow.addView(buttons[i][j]);
+                tableRow.addView(buttons[i][j], layoutParams);
             }
-            tableRow.setLayoutParams(tableLayoutLayoutParams);
-            tableLayout.addView(tableRow);
+            tableLayout.addView(tableRow, tableLayoutLayoutParams);
         }
     }
 }
