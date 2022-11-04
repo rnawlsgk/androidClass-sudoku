@@ -22,13 +22,32 @@ public class MainActivity extends AppCompatActivity {
         TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.MATCH_PARENT, 1.0f);
         TableLayout.LayoutParams tableLayoutLayoutParams = new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, 0, 1.0f);
 
+        BoardGenerator boardGenerator = new BoardGenerator();
+
         for (int i=0;i<9;i++)   {
             TableRow tableRow = new TableRow(this);
             tableRow.setBackgroundColor(Color.DKGRAY);
 
+
+
             for (int j=0;j<9;j++){
                 buttons[i][j] = new Button(this);
                 buttons[i][j].setLayoutParams(layoutParams);
+                buttons[i][j].setTextSize(20);
+
+                if (j == 2 || j == 5) {
+                    tableRow.setPadding(0, 20, 20 ,50);
+                } else {
+                    tableRow.setPadding(0, 0, 0 ,0);
+                }
+
+                int number = boardGenerator.get(i, j);
+                String setnum = Integer.toString(number);
+                double rand = Math.random() * 10;
+                if (rand < 6) {
+                    buttons[i][j].setText(setnum);
+                }
+
                 tableRow.addView(buttons[i][j]);
             }
             tableRow.setLayoutParams(tableLayoutLayoutParams);
