@@ -28,18 +28,16 @@ public class MainActivity extends AppCompatActivity {
             TableRow tableRow = new TableRow(this);
             tableRow.setBackgroundColor(Color.DKGRAY);
 
-
+            if (i == 2 || i == 5) {
+                tableRow.setPadding(0, 0, 0, 15);
+            } else {
+                tableRow.setPadding(0, 0, 0, 0);
+            }
 
             for (int j=0;j<9;j++){
                 buttons[i][j] = new Button(this);
                 buttons[i][j].setLayoutParams(layoutParams);
                 buttons[i][j].setTextSize(20);
-
-                if (j == 2 || j == 5) {
-                    tableRow.setPadding(0, 20, 20 ,50);
-                } else {
-                    tableRow.setPadding(0, 0, 0 ,0);
-                }
 
                 int number = boardGenerator.get(i, j);
                 String setnum = Integer.toString(number);
