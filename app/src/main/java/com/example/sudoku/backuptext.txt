@@ -1,35 +1,24 @@
-Button button1 = new Button(this);
-        tableRow1.addView(button1);
-        Button button2 = new Button(this);
-        tableRow1.addView(button2);
-        Button button3 = new Button(this);
-        tableRow1.addView(button3);
-        Button button4 = new Button(this);
-        tableRow1.addView(button4);
-        Button button5 = new Button(this);
-        tableRow1.addView(button5);
-        Button button6 = new Button(this);
-        tableRow1.addView(button6);
-        Button button7 = new Button(this);
-        tableRow1.addView(button7);
-        Button button8 = new Button(this);
-        tableRow1.addView(button8);
-        Button button9 = new Button(this);
-        tableRow1.addView(button9);
+for (int i=0;i<9;i++)   {
+            TableRow tableRow = new TableRow(this);
+            tableRow.setBackgroundColor(Color.DKGRAY);
 
-        TableRow tableRow2 = new TableRow(this);
-        tableLayout.addView(tableRow2);
-        TableRow tableRow3 = new TableRow(this);
-        tableLayout.addView(tableRow3);
-        TableRow tableRow4 = new TableRow(this);
-        tableLayout.addView(tableRow4);
-        TableRow tableRow5 = new TableRow(this);
-        tableLayout.addView(tableRow5);
-        TableRow tableRow6 = new TableRow(this);
-        tableLayout.addView(tableRow6);
-        TableRow tableRow7 = new TableRow(this);
-        tableLayout.addView(tableRow7);
-        TableRow tableRow8 = new TableRow(this);
-        tableLayout.addView(tableRow8);
-        TableRow tableRow9 = new TableRow(this);
-        tableLayout.addView(tableRow9);
+            if (i == 2 || i == 5) {
+                tableRow.setPadding(0, 0, 0, 15);
+            } else {
+                tableRow.setPadding(0, 0, 0, 0);
+            }
+
+            for (int j=0;j<9;j++){
+                buttons[i][j] = new Button(this);
+                buttons[i][j].setTextSize(20);
+
+                int number = boardGenerator.get(i, j);
+                String setnum = Integer.toString(number);
+                double rand = Math.random() * 10;
+                if (rand < 6) {
+                    buttons[i][j].setText(setnum);
+                }
+                tableRow.addView(buttons[i][j], layoutParams);
+            }
+            tableLayout.addView(tableRow, tableLayoutLayoutParams);
+        }
