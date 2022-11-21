@@ -1,6 +1,7 @@
 package com.example.sudoku;
 
 import android.content.Context;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -22,8 +23,8 @@ public class CustomButton extends FrameLayout {
 
         textView = new TextView(context);
 
-        textView.setTextSize(20);
-        textView.setTextAlignment(TEXT_ALIGNMENT_CENTER);
+        textView.setTextSize(25);
+        textView.setGravity(Gravity.CENTER);
 
         addView(textView);
 
