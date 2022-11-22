@@ -4,9 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -51,5 +54,33 @@ public class MainActivity extends AppCompatActivity {
             }
             tableLayout.addView(tableRow, tableLayoutLayoutParams);
         }
+
+        //number Pad
+
+
+        LinearLayout numberPadLinearLayout = new LinearLayout(this);
+        LinearLayout.LayoutParams linearLayoutLayoutParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+
+        TextView numberPadTextView = new TextView(this);
+        numberPadTextView.setText("Input Number");
+        numberPadLinearLayout.addView(numberPadTextView);
+
+
+//        TableLayout numberPadTableLayout = new TableLayout(this);
+//        TableLayout
+//        for (int i=0;i<3;i++) {
+//            TableRow numberPadTableRow = new TableRow(this);
+//            for (int j=0;j<3;j++) {
+//                Button numberPadButtons = new Button(this);
+//                numberPadTableRow.addView(numberPadButtons);
+//            }
+//            numberPadTableLayout.addView(numberPadTableRow);
+//        }
+
+
     }
+
 }
