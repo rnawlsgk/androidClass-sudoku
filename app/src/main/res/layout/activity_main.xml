@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:orientation="vertical"
-    android:background="@color/dkgray">
+    android:background="@color/dkgray"
+    android:id="@+id/linearLayout">
 
     <TableLayout
         android:id="@+id/tableLayout"
