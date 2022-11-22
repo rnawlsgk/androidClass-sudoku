@@ -2,10 +2,13 @@ package com.example.sudoku;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
@@ -63,12 +66,13 @@ public class MainActivity extends AppCompatActivity {
         TextView numberPadTextView = new TextView(this);
         numberPadTextView.setText("Input Number");
 
-        TableLayout numberPadTableLayout = new TableLayout(this);
-        numberPadTableLayout.setLayoutParams(linearLayoutLayoutParams);
-//        numberPadTableLayout.setGravity(Gravity.CENTER);
-        numberPadTableLayout.setBackgroundColor(Color.BLACK);
+//        TableLayout numberPadTableLayout = new TableLayout(this);
+//        numberPadTableLayout.setLayoutParams(linearLayoutLayoutParams);
 
-        numberPadLinearLayout.addView(numberPadTableLayout);
+
+
+//        numberPadTableLayout.setGravity(Gravity.CENTER);
+//        numberPadTableLayout.setBackgroundColor(Color.BLACK);
 
 //        TableRow.LayoutParams numPadTableRowLayoutParams = new TableRow.LayoutParams(
 //                0,
