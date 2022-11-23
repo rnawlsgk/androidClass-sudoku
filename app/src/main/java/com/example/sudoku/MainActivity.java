@@ -58,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //==================number Pad=====================
+        FrameLayout frameLayout = (FrameLayout) findViewById(R.id.frameLayout);
+
 
 
     }
