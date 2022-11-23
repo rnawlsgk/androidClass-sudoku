@@ -24,14 +24,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         TableLayout tableLayout = (TableLayout) findViewById(R.id.tableLayout);
+        TableLayout numberPadTableLayout = new TableLayout(this);
 
         CustomButton buttons[][] = new CustomButton[9][9];
 
-        TableRow.LayoutParams tableRowLayoutParams = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.MATCH_PARENT, 1.0f);
         TableLayout.LayoutParams tableLayoutLayoutParams = new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, 0, 1.0f);
-
+        TableRow.LayoutParams tableRowLayoutParams = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.MATCH_PARENT, 1.0f);
         tableRowLayoutParams.setMargins(12, 12, 12, 12);
 
+        //borad
         BoardGenerator boardGenerator = new BoardGenerator();
 
         for (int i = 0; i < 9; i++) {
@@ -47,12 +48,19 @@ public class MainActivity extends AppCompatActivity {
             for (int j = 0; j < 9; j++) {
                 buttons[i][j] = new CustomButton(this, i, j);
 
-                int number = boardGenerator.get(i, j);
+                int boardNumber = boardGenerator.get(i, j);
                 double rand = Math.random() * 10;
                 if (rand < 6) {
-                    buttons[i][j].set(number);
+                    buttons[i][j].set(boardNumber);
                 }
                 tableRow.addView(buttons[i][j], tableRowLayoutParams);
+
+                buttons[i][j].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        numberPadTableLayout.setVisibility(View.VISIBLE);
+                    }
+                });
             }
             tableLayout.addView(tableRow, tableLayoutLayoutParams);
         }
@@ -66,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
         );
         numberPadFrameLayoutLayoutParams.gravity = Gravity.CENTER;
 
-        TableLayout numberPadTableLayout = new TableLayout(this);
         numberPadTableLayout.setLayoutParams(numberPadFrameLayoutLayoutParams);
         numberPadTableLayout.setBackgroundColor(Color.WHITE);
         numberPadTableLayout.setPadding(10, 10, 10, 10);
@@ -93,6 +100,13 @@ public class MainActivity extends AppCompatActivity {
                 numberPadButtons.setText(numberSet);
                 number++;
 
+                numberPadButtons.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        numberPadTableLayout.setVisibility(View.INVISIBLE);
+                    }
+                });
+
                 if (i==3) {
                     switch (j) {
                         case 0:
@@ -115,10 +129,9 @@ public class MainActivity extends AppCompatActivity {
             numberPadTableRow.setLayoutParams(tableLayoutLayoutParams);
             numberPadTableLayout.addView(numberPadTableRow);
         }
-
         numberPadFrameLayout.addView(numberPadTableLayout);
+        numberPadTableLayout.setVisibility(View.INVISIBLE);
 
-//        numberPadTableLayout.setVisibility(View.INVISIBLE);
     }
 
 }

@@ -59,3 +59,15 @@ for (int i=0;i<9;i++)   {
                 numberPadFrameLayout.addView(numberPadTableLayout);
 
                 numberPadTableLayout.setVisibility(View.INVISIBLE);
+
+일반식으로 만들어보기
+
+i 	j 	1
+i 	j+1 2
+i 	j+2 3
+i+1 j 	4
+i+1	j+1	5
+i+1	j+2	6
+i+2	j	7
+i+2	j+1	8
+i+2	j+2	9
