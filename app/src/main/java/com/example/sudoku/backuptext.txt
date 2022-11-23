@@ -22,3 +22,40 @@ for (int i=0;i<9;i++)   {
             }
             tableLayout.addView(tableRow, tableLayoutLayoutParams);
         }
+
+
+        //numopad 동적 생성 1차 테스트안
+        FrameLayout numberPadFrameLayout = (FrameLayout) findViewById(R.id.frameLayout);
+
+                TextView numberPadTextView = new TextView(this);
+                numberPadTextView.setText("Input Number");
+
+                TableLayout numberPadTableLayout = new TableLayout(this);
+                numberPadTableLayout.setLayoutParams(frameLayoutLayoutParams);
+
+                numberPadTableLayout.setGravity(Gravity.CENTER);
+                numberPadTableLayout.setBackgroundColor(Color.BLACK);
+
+                TableRow.LayoutParams numPadTableRowLayoutParams = new TableRow.LayoutParams(
+                        0,
+                        TableRow.LayoutParams.WRAP_CONTENT,
+                        1.0f
+                );
+
+                for (int i=0;i<3;i++) {
+                    TableRow numberPadTableRow = new TableRow(this);
+                    for (int j=0;j<3;j++) {
+                        Button numberPadButtons = new Button(this);
+                        numberPadButtons.setText("1");
+
+                        numberPadButtons.setLayoutParams(numPadTableRowLayoutParams);
+                        numberPadTableRow.addView(numberPadButtons);
+                    }
+                    numberPadTableRow.setLayoutParams(tableLayoutLayoutParams);
+                    numberPadTableLayout.addView(numberPadTableRow);
+                }
+
+                numberPadFrameLayout.addView(numberPadTextView);
+                numberPadFrameLayout.addView(numberPadTableLayout);
+
+                numberPadTableLayout.setVisibility(View.INVISIBLE);
