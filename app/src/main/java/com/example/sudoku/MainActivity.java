@@ -30,11 +30,11 @@ public class MainActivity extends AppCompatActivity {
         TableRow.LayoutParams tableRowLayoutParams = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.MATCH_PARENT, 1.0f);
         TableLayout.LayoutParams tableLayoutLayoutParams = new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, 0, 1.0f);
 
-        tableRowLayoutParams.setMargins(12, 12,12,12);
+        tableRowLayoutParams.setMargins(12, 12, 12, 12);
 
         BoardGenerator boardGenerator = new BoardGenerator();
 
-        for (int i=0;i<9;i++)   {
+        for (int i = 0; i < 9; i++) {
             TableRow tableRow = new TableRow(this);
             tableRow.setBackgroundColor(Color.DKGRAY);
 
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
                 tableRow.setPadding(0, 0, 0, 0);
             }
 
-            for (int j=0;j<9;j++){
+            for (int j = 0; j < 9; j++) {
                 buttons[i][j] = new CustomButton(this, i, j);
 
                 int number = boardGenerator.get(i, j);
@@ -58,10 +58,67 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //==================number Pad=====================
-        FrameLayout frameLayout = (FrameLayout) findViewById(R.id.frameLayout);
+        FrameLayout numberPadFrameLayout = (FrameLayout) findViewById(R.id.frameLayout);
 
+        FrameLayout.LayoutParams numberPadFrameLayoutLayoutParams = new FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.WRAP_CONTENT,
+                FrameLayout.LayoutParams.WRAP_CONTENT
+        );
+        numberPadFrameLayoutLayoutParams.gravity = Gravity.CENTER;
 
+        TableLayout numberPadTableLayout = new TableLayout(this);
+        numberPadTableLayout.setLayoutParams(numberPadFrameLayoutLayoutParams);
+        numberPadTableLayout.setBackgroundColor(Color.WHITE);
+        numberPadTableLayout.setPadding(10, 10, 10, 10);
 
+        TextView numberPadTextView = new TextView(this);
+        numberPadTextView.setText("Input Number");
+        numberPadTextView.setGravity(Gravity.CENTER);
+        numberPadTextView.setTextSize(20);
+        numberPadTableLayout.addView(numberPadTextView);
+
+        TableRow.LayoutParams numPadTableRowLayoutParams = new TableRow.LayoutParams(
+                TableRow.LayoutParams.WRAP_CONTENT,
+                TableRow.LayoutParams.WRAP_CONTENT,
+                1.0f
+        );
+
+        int number = 1;
+        for (int i = 0; i < 4; i++) {
+            TableRow numberPadTableRow = new TableRow(this);
+            for (int j = 0; j < 3; j++) {
+                Button numberPadButtons = new Button(this);
+
+                String numberSet = Integer.toString(number);
+                numberPadButtons.setText(numberSet);
+                number++;
+
+                if (i==3) {
+                    switch (j) {
+                        case 0:
+                            numberPadButtons.setVisibility(View.INVISIBLE);
+                            break;
+                        case 1:
+                            numberPadButtons.setText("CANCEL");
+                            break;
+                        case 2:
+                            numberPadButtons.setText("DEL");
+                            break;
+                        default:
+                            break;
+                    }
+                }
+
+                numberPadButtons.setLayoutParams(numPadTableRowLayoutParams);
+                numberPadTableRow.addView(numberPadButtons);
+            }
+            numberPadTableRow.setLayoutParams(tableLayoutLayoutParams);
+            numberPadTableLayout.addView(numberPadTableRow);
+        }
+
+        numberPadFrameLayout.addView(numberPadTableLayout);
+
+//        numberPadTableLayout.setVisibility(View.INVISIBLE);
     }
 
 }
