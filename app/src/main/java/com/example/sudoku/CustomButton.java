@@ -1,25 +1,31 @@
 package com.example.sudoku;
 
 import android.content.Context;
+import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 public class CustomButton extends FrameLayout {
 
-    int row;
-    int col;
+    int irow;
+    int jcol;
     int value;
     private TextView textView;
+
+    public CustomButton(@NonNull Context context) {
+        super(context);
+    }
 
     public CustomButton(Context context, int row, int col) {
         super(context);
 
-        row = this.row;
-        col = this.col;
+        irow = row;
+        jcol = col;
 
         textView = new TextView(context);
 
@@ -32,8 +38,28 @@ public class CustomButton extends FrameLayout {
         setBackgroundResource(R.drawable.button_selector);
     }
 
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+    public int getIrow() {
+        return irow;
+    }
+
+    public int getJcol() {
+        return jcol;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
     public void set(int a) {
         String stringValue = Integer.toString(a);
         textView.setText(stringValue);
+
+        if (a == 0) {
+            textView.setVisibility(INVISIBLE);
+        }
     }
 }

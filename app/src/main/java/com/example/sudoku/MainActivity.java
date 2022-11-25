@@ -49,9 +49,12 @@ public class MainActivity extends AppCompatActivity {
                 buttons[i][j] = new CustomButton(this, i, j);
 
                 int boardNumber = boardGenerator.get(i, j);
+                buttons[i][j].set(boardNumber);
+                buttons[i][j].setValue(boardNumber);
+
                 double rand = Math.random() * 10;
-                if (rand < 6) {
-                    buttons[i][j].set(boardNumber);
+                if (rand < 4) {
+                    buttons[i][j].set(0);
                 }
                 tableRow.addView(buttons[i][j], tableRowLayoutParams);
 
@@ -114,6 +117,12 @@ public class MainActivity extends AppCompatActivity {
                             break;
                         case 1:
                             numberPadButtons.setText("CANCEL");
+                            numberPadButtons.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    numberPadTableLayout.setVisibility(View.INVISIBLE);
+                                }
+                            });
                             break;
                         case 2:
                             numberPadButtons.setText("DEL");
