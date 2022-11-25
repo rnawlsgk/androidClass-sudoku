@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
 
                 int boardNumber = boardGenerator.get(i, j);
                 buttons[i][j].set(boardNumber);
-                buttons[i][j].setValue(boardNumber);
 
                 double rand = Math.random() * 10;
                 if (rand < 4) {

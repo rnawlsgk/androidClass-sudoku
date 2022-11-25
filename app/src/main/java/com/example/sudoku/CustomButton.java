@@ -38,10 +38,6 @@ public class CustomButton extends FrameLayout {
         setBackgroundResource(R.drawable.button_selector);
     }
 
-    public void setValue(int value) {
-        this.value = value;
-    }
-
     public int getIrow() {
         return irow;
     }
@@ -57,6 +53,8 @@ public class CustomButton extends FrameLayout {
     public void set(int a) {
         String stringValue = Integer.toString(a);
         textView.setText(stringValue);
+
+        this.value = a;
 
         if (a == 0) {
             textView.setVisibility(INVISIBLE);
