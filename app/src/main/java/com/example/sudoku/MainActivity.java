@@ -24,7 +24,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         TableLayout tableLayout = (TableLayout) findViewById(R.id.tableLayout);
-        TableLayout numberPadTableLayout = new TableLayout(this);
+//        TableLayout numberPadTableLayout = new TableLayout(this);
+        TableLayout numberPadTableLayout = findViewById(R.id.numberPadTableLayout);
 
         CustomButton buttons[][] = new CustomButton[9][9];
 
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         numberPadTableLayout.setVisibility(View.VISIBLE);
+
                     }
                 });
             }
@@ -69,8 +71,9 @@ public class MainActivity extends AppCompatActivity {
 
         //==================number Pad=====================
         FrameLayout numberPadFrameLayout = (FrameLayout) findViewById(R.id.frameLayout);
+        Button btn_cancel = findViewById(R.id.btn_cancel);
 
-        FrameLayout.LayoutParams numberPadFrameLayoutLayoutParams = new FrameLayout.LayoutParams(
+        /*FrameLayout.LayoutParams numberPadFrameLayoutLayoutParams = new FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.WRAP_CONTENT,
                 FrameLayout.LayoutParams.WRAP_CONTENT
         );
@@ -102,13 +105,6 @@ public class MainActivity extends AppCompatActivity {
                 numberPadButtons.setText(numberSet);
                 number++;
 
-                numberPadButtons.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        numberPadTableLayout.setVisibility(View.INVISIBLE);
-                    }
-                });
-
                 if (i==3) {
                     switch (j) {
                         case 0:
@@ -130,16 +126,21 @@ public class MainActivity extends AppCompatActivity {
                             break;
                     }
                 }
-
                 numberPadButtons.setLayoutParams(numPadTableRowLayoutParams);
                 numberPadTableRow.addView(numberPadButtons);
             }
             numberPadTableRow.setLayoutParams(tableLayoutLayoutParams);
             numberPadTableLayout.addView(numberPadTableRow);
-        }
-        numberPadFrameLayout.addView(numberPadTableLayout);
-        numberPadTableLayout.setVisibility(View.INVISIBLE);
+        }*/
 
+//        numberPadFrameLayout.addView(numberPadTableLayout);
+        numberPadTableLayout.setVisibility(View.INVISIBLE);
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                numberPadTableLayout.setVisibility(View.INVISIBLE);
+            }
+        });
     }
 
 }
