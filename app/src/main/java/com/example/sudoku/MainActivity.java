@@ -18,15 +18,19 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    CustomButton buttons[][] = new CustomButton[9][9];
+    CustomButton clickedCustomButton;
+    TableLayout tableLayout;
+    FrameLayout numberPadFrameLayout;
+    TextView numberPadTextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TableLayout tableLayout = (TableLayout) findViewById(R.id.tableLayout);
+        tableLayout = (TableLayout) findViewById(R.id.tableLayout);
         TableLayout numberPadTableLayout = new TableLayout(this);
-
-        CustomButton buttons[][] = new CustomButton[9][9];
 
         TableLayout.LayoutParams tableLayoutLayoutParams = new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, 0, 1.0f);
         TableRow.LayoutParams tableRowLayoutParams = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.MATCH_PARENT, 1.0f);
@@ -56,12 +60,13 @@ public class MainActivity extends AppCompatActivity {
                     buttons[i][j].set(0);
                 }
                 tableRow.addView(buttons[i][j], tableRowLayoutParams);
-
+                final int clickedCol = j;
+                final int clickedRow = i;
                 buttons[i][j].setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View view) {
-                        numberPadTableLayout.setVisibility(View.VISIBLE);
-
+                        public void onClick(View view) {
+                            clickedCustomButton = buttons[clickedRow][clickedCol];
+                            numberPadTableLayout.setVisibility(View.VISIBLE);
                     }
                 });
             }
@@ -69,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //==================number Pad=====================
-        FrameLayout numberPadFrameLayout = (FrameLayout) findViewById(R.id.frameLayout);
+        numberPadFrameLayout = (FrameLayout) findViewById(R.id.frameLayout);
 
         FrameLayout.LayoutParams numberPadFrameLayoutLayoutParams = new FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.WRAP_CONTENT,
@@ -81,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         numberPadTableLayout.setBackgroundColor(Color.WHITE);
         numberPadTableLayout.setPadding(10, 10, 10, 10);
 
-        TextView numberPadTextView = new TextView(this);
+        numberPadTextView = new TextView(this);
         numberPadTextView.setText("Input Number");
         numberPadTextView.setGravity(Gravity.CENTER);
         numberPadTextView.setTextSize(20);
@@ -102,6 +107,16 @@ public class MainActivity extends AppCompatActivity {
                 String numberSet = Integer.toString(number);
                 numberPadButtons.setText(numberSet);
                 number++;
+                String numberPadValueString = (String) numberPadButtons.getText();
+                final int numberPadValueInt = Integer.parseInt(numberPadValueString);
+
+                numberPadButtons.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        clickedCustomButton.set(numberPadValueInt);
+                        numberPadTableLayout.setVisibility(View.INVISIBLE);
+                    }
+                });
 
                 if (i==3) {
                     switch (j) {
@@ -119,6 +134,13 @@ public class MainActivity extends AppCompatActivity {
                             break;
                         case 2:
                             numberPadButtons.setText("DEL");
+                            numberPadButtons.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    clickedCustomButton.set(0);
+                                    numberPadTableLayout.setVisibility(View.INVISIBLE);
+                                }
+                            });
                             break;
                         default:
                             break;
@@ -133,11 +155,14 @@ public class MainActivity extends AppCompatActivity {
 
         numberPadFrameLayout.addView(numberPadTableLayout);
         numberPadTableLayout.setVisibility(View.INVISIBLE);
+        numberPadTableLayout.setTag("numberPadTableLayout");
 
     }
 
     public void onClickNum1(View v) {
-
-
+        CustomButton customButton = v.findViewWithTag("clickedCustomButton");
+        customButton.set(1);
+        TableLayout tableLayout = v.findViewWithTag("numberPadTableLayout");
+        tableLayout.setVisibility(View.INVISIBLE);
     }
 }

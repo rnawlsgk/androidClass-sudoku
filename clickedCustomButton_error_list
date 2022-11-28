@@ -1,0 +1,22 @@
+    // setId
+board 버튼 누르 면마다 setid 하고 numberpad에서 id 찾아서 위치 찾으려 했음 >> 다른버튼 누르면 id같아짐 결국 멸망
+int clickedId = View.generateViewId();
+view.setId(clickedId);
+CustomButton customButton = findViewById(clickedId);
+customButton.set(1);
+
+
+clickedCustomButton
+
+CustomButton 생성 때 col, row 전달함
+setter 필요 x
+
+board 버튼 눌렀을 때 getter col row 받아야 하지 않을까?
+근데 setOnclickListener 에서는 변수 쓸수 없어 final로 고정 변수만 쓸수 있는데 이게 필요?
+
+
+!!!!!!!!!!!!!!!!!!!!!!!
+내가 이겼다
+
+onCreate() 외부에 선언
+ 보통 view들 처음에 onCreate 외부에 선언 하던데 이래서 그런가

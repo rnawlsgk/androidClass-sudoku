@@ -58,6 +58,8 @@ public class CustomButton extends FrameLayout {
 
         if (a == 0) {
             textView.setVisibility(INVISIBLE);
+        } else {
+            textView.setVisibility(VISIBLE);
         }
     }
 }
