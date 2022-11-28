@@ -6,11 +6,12 @@
     android:padding="7dp"
     android:layout_marginStart="40dp"
     android:layout_marginEnd="40dp"
+    android:layout_gravity="center_vertical"
     android:id="@+id/numberPadTableLayout">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/numverPadHeadLine"
+        android:id="@+id/numberPadHeadLine"
         android:text="Input Number"
         android:textSize="30sp"
         android:textAlignment="center"
@@ -34,9 +35,9 @@
             android:textColor="@color/white"
             android:textSize="25sp"/>
         <Button
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="3"
             android:textColor="@color/white"
             android:textSize="25sp"/>
@@ -106,6 +107,7 @@
             android:textSize="25sp"
             android:visibility="invisible"/>
         <Button
+            android:id="@+id/btn_cancel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

@@ -24,8 +24,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         TableLayout tableLayout = (TableLayout) findViewById(R.id.tableLayout);
-//        TableLayout numberPadTableLayout = new TableLayout(this);
-        TableLayout numberPadTableLayout = findViewById(R.id.numberPadTableLayout);
+        TableLayout numberPadTableLayout = new TableLayout(this);
 
         CustomButton buttons[][] = new CustomButton[9][9];
 
@@ -71,9 +70,8 @@ public class MainActivity extends AppCompatActivity {
 
         //==================number Pad=====================
         FrameLayout numberPadFrameLayout = (FrameLayout) findViewById(R.id.frameLayout);
-        Button btn_cancel = findViewById(R.id.btn_cancel);
 
-        /*FrameLayout.LayoutParams numberPadFrameLayoutLayoutParams = new FrameLayout.LayoutParams(
+        FrameLayout.LayoutParams numberPadFrameLayoutLayoutParams = new FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.WRAP_CONTENT,
                 FrameLayout.LayoutParams.WRAP_CONTENT
         );
@@ -131,16 +129,15 @@ public class MainActivity extends AppCompatActivity {
             }
             numberPadTableRow.setLayoutParams(tableLayoutLayoutParams);
             numberPadTableLayout.addView(numberPadTableRow);
-        }*/
+        }
 
-//        numberPadFrameLayout.addView(numberPadTableLayout);
+        numberPadFrameLayout.addView(numberPadTableLayout);
         numberPadTableLayout.setVisibility(View.INVISIBLE);
-        btn_cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                numberPadTableLayout.setVisibility(View.INVISIBLE);
-            }
-        });
+
     }
 
+    public void onClickNum1(View v) {
+
+
+    }
 }
