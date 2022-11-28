@@ -159,10 +159,4 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void onClickNum1(View v) {
-        CustomButton customButton = v.findViewWithTag("clickedCustomButton");
-        customButton.set(1);
-        TableLayout tableLayout = v.findViewWithTag("numberPadTableLayout");
-        tableLayout.setVisibility(View.INVISIBLE);
-    }
 }
