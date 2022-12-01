@@ -1,6 +1,7 @@
 package com.example.sudoku;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
@@ -47,6 +48,8 @@ public class CustomButton extends FrameLayout {
     }
 
     public int getValue() {
+        String stringValue = textView.getText().toString();
+        value = Integer.parseInt(stringValue);
         return value;
     }
 
@@ -61,5 +64,13 @@ public class CustomButton extends FrameLayout {
         } else {
             textView.setVisibility(VISIBLE);
         }
+    }
+
+    public void setConflick() {
+        setBackgroundColor(Color.RED);
+    }
+
+    public void setUnConflict() {
+        setBackgroundColor(Color.WHITE);
     }
 }

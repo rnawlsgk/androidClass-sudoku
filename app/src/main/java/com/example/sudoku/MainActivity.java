@@ -20,7 +20,14 @@ public class MainActivity extends AppCompatActivity {
 
     CustomButton buttons[][] = new CustomButton[9][9];
     CustomButton clickedCustomButton;
-    TableLayout tableLayout;
+
+    BoardGenerator boardGenerator;
+
+    FrameLayout.LayoutParams numberPadFrameLayoutLayoutParams;
+    TableLayout tableLayout, numberPadTableLayout;
+    TableLayout.LayoutParams tableLayoutLayoutParams;
+    TableRow.LayoutParams tableRowLayoutParams;
+
     FrameLayout numberPadFrameLayout;
     TextView numberPadTextView;
 
@@ -30,14 +37,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         tableLayout = (TableLayout) findViewById(R.id.tableLayout);
-        TableLayout numberPadTableLayout = new TableLayout(this);
+        numberPadTableLayout = new TableLayout(this);
 
-        TableLayout.LayoutParams tableLayoutLayoutParams = new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, 0, 1.0f);
-        TableRow.LayoutParams tableRowLayoutParams = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.MATCH_PARENT, 1.0f);
+        tableLayoutLayoutParams = new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, 0, 1.0f);
+        tableRowLayoutParams = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.MATCH_PARENT, 1.0f);
         tableRowLayoutParams.setMargins(12, 12, 12, 12);
 
         //borad
-        BoardGenerator boardGenerator = new BoardGenerator();
+        boardGenerator = new BoardGenerator();
 
         for (int i = 0; i < 9; i++) {
             TableRow tableRow = new TableRow(this);
@@ -76,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         //==================number Pad=====================
         numberPadFrameLayout = (FrameLayout) findViewById(R.id.frameLayout);
 
-        FrameLayout.LayoutParams numberPadFrameLayoutLayoutParams = new FrameLayout.LayoutParams(
+        numberPadFrameLayoutLayoutParams = new FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.WRAP_CONTENT,
                 FrameLayout.LayoutParams.WRAP_CONTENT
         );
@@ -152,10 +159,8 @@ public class MainActivity extends AppCompatActivity {
             numberPadTableRow.setLayoutParams(tableLayoutLayoutParams);
             numberPadTableLayout.addView(numberPadTableRow);
         }
-
         numberPadFrameLayout.addView(numberPadTableLayout);
         numberPadTableLayout.setVisibility(View.INVISIBLE);
-        numberPadTableLayout.setTag("numberPadTableLayout");
 
     }
 
