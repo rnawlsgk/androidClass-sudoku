@@ -70,7 +70,7 @@ public class CustomButton extends FrameLayout {
         setBackgroundColor(Color.RED);
     }
 
-    public void setUnConflict() {
+    public void unSetConflict() {
         setBackgroundColor(Color.WHITE);
     }
 }

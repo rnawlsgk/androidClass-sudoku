@@ -171,6 +171,17 @@ public class MainActivity extends AppCompatActivity {
         int checkButtonCol = checkButton.getCol();
         int checkButtonRow = checkButton.getRow();
 
+        /*
+        //unsetConflick
+        언셋하려면 이제
+        for문 에서 set하고 나서 continue 하거나 break하거나
+        -> 이거도 뭔가 이상하고
+
+        아니면 set이랑 unset이랑 for문을 나눠서
+        set하고 나면 break한다. -> 이거도 뭔가 이상함
+
+        암튼 이런쪽으로 잘 생각해보자고
+        */
         for (int i=0;i<9;i++) {
             for (int j=0;j<9;j++) {
 
@@ -188,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
             if (i==checkButtonCol) { continue; }
 
             if (checkButtonValue == compareButtonHorizontal) {
-                checkButton.setUnConflict();
+                checkButton.setConflick();
             }
         }
     }
