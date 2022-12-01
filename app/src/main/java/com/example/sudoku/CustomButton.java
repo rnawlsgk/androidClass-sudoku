@@ -13,8 +13,8 @@ import androidx.annotation.Nullable;
 
 public class CustomButton extends FrameLayout {
 
-    int jcol;
-    int irow;
+    int col;
+    int row;
     int value;
     private TextView textView;
 
@@ -25,8 +25,8 @@ public class CustomButton extends FrameLayout {
     public CustomButton(Context context, int row, int col) {
         super(context);
 
-        jcol = col;
-        irow = row;
+        this.col = col;
+        this.row = row;
 
         textView = new TextView(context);
 
@@ -39,12 +39,12 @@ public class CustomButton extends FrameLayout {
         setBackgroundResource(R.drawable.button_selector);
     }
 
-    public int getIrow() {
-        return irow;
+    public int getRow() {
+        return row;
     }
 
-    public int getJcol() {
-        return jcol;
+    public int getCol() {
+        return col;
     }
 
     public int getValue() {

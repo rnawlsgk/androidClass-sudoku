@@ -168,21 +168,27 @@ public class MainActivity extends AppCompatActivity {
     //=================Game Rules Implementation=================
     public void checkRules(CustomButton checkButton) {
         int checkButtonValue = checkButton.getValue();
-        int checkBUttonCol = checkButton.getJcol();
-        int checkButtonRow = checkButton.getIrow();
+        int checkButtonCol = checkButton.getCol();
+        int checkButtonRow = checkButton.getRow();
 
         for (int i=0;i<9;i++) {
             for (int j=0;j<9;j++) {
 
             }
-            // horizontal conflict
-            int compareButtonHorizontal = buttons[i][checkBUttonCol].getValue();
-            if (i==checkButtonRow) {
-                continue;
-            }
-            if (checkButtonValue == compareButtonHorizontal) {
-                checkButton.setConflick();
+            // vertical conflict
+            int compareButtonVertical = buttons[i][checkButtonCol].getValue();
+            if (i==checkButtonRow) { continue; }
 
+            if (checkButtonValue == compareButtonVertical) {
+                checkButton.setConflick();
+            }
+
+            //horizontal conflict
+            int compareButtonHorizontal = buttons[checkButtonRow][i].getValue();
+            if (i==checkButtonCol) { continue; }
+
+            if (checkButtonValue == compareButtonHorizontal) {
+                checkButton.setUnConflict();
             }
         }
     }
