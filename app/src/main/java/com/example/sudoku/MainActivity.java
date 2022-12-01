@@ -175,33 +175,55 @@ public class MainActivity extends AppCompatActivity {
 
         /*
         //unsetConflict
-        언셋하려면 이제
-        for문 에서 set하고 나서 continue 하거나 break하거나
-        -> 이거도 뭔가 이상하고
-
-        아니면 set이랑 unset이랑 for문을 나눠서
-        set하고 나면 break한다. -> 이거도 뭔가 이상함
-
-        암튼 이런쪽으로 잘 생각해보자고
+        충돌나면 충돌나는거들 setConflict 했는데
+        이제 충돌 안났을때 그니까 해제 했을때 충돌 안나는거들 unSet해야 되는데
+        누른거는 확실히 할수 있는데 같이 충돌났던거는 이제 못건들겠단 말이야
         */
+        // vertical conflict
         for (int i=0;i<9;i++) {
-            // vertical conflict
-            if (i==checkButtonRow) { continue; }
+            if (i == checkButtonRow) {
+                continue;
+            }
             int compareButtonVertical = buttons[i][checkButtonCol].getValue();
 
             if (checkButtonValue == compareButtonVertical) {
-                checkButton.setConflick();
-                buttons[i][checkButtonCol].setConflick();
+                checkButton.setConflict(true);
+                buttons[i][checkButtonCol].setConflict(true);
+                break;
             }
 
-            //horizontal conflict
-            if (i==checkButtonCol) { continue; }
+            /*else {
+                buttons[i][checkButtonCol].unSetConflict(false);
+                if (checkButton.getIsConflict()){
+                    continue;
+                }
+                checkButton.unSetConflict(false);
+            }*/
+        }
+        //horizontal conflict
+        for (int i=0;i<9;i++) {
+            if (i == checkButtonCol) {
+                continue;
+            }
             int compareButtonHorizontal = buttons[checkButtonRow][i].getValue();
 
             if (checkButtonValue == compareButtonHorizontal) {
-                checkButton.setConflick();
-                buttons[checkButtonRow][i].setConflick();
+                buttons[checkButtonRow][i].setConflict(true);
+                checkButton.setConflict(true);
+                break;
             }
+
+            /*else {
+                buttons[checkButtonRow][i].unSetConflict(false);
+                if (checkButton.getIsConflict()){
+                    continue;
+                }
+                checkButton.unSetConflict(false);
+            }*/
         }
+
+
+
+
     }
 }

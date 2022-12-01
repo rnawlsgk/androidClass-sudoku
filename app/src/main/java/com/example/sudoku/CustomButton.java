@@ -16,6 +16,8 @@ public class CustomButton extends FrameLayout {
     int col;
     int row;
     int value;
+    boolean isConflict = false;
+
     private TextView textView;
 
     public CustomButton(@NonNull Context context) {
@@ -66,11 +68,17 @@ public class CustomButton extends FrameLayout {
         }
     }
 
-    public void setConflick() {
+    public void setConflict(boolean conflict) {
         setBackgroundColor(Color.RED);
+        isConflict = conflict;
     }
 
-    public void unSetConflict() {
+    public void unSetConflict(boolean conflict) {
         setBackgroundColor(Color.WHITE);
+        isConflict = conflict;
+    }
+
+    public boolean getIsConflict() {
+        return isConflict;
     }
 }
