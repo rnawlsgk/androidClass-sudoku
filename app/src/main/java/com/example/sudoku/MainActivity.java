@@ -1,5 +1,6 @@
 package com.example.sudoku;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -23,12 +24,14 @@ public class MainActivity extends AppCompatActivity {
 
     BoardGenerator boardGenerator;
 
+    FrameLayout numberPadFrameLayout;
     FrameLayout.LayoutParams numberPadFrameLayoutLayoutParams;
+
     TableLayout tableLayout, numberPadTableLayout;
     TableLayout.LayoutParams tableLayoutLayoutParams;
     TableRow.LayoutParams tableRowLayoutParams;
+    TableRow.LayoutParams numPadTableRowLayoutParams;
 
-    FrameLayout numberPadFrameLayout;
     TextView numberPadTextView;
 
     @Override
@@ -43,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         tableRowLayoutParams = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.MATCH_PARENT, 1.0f);
         tableRowLayoutParams.setMargins(12, 12, 12, 12);
 
-        //borad
+        //board
         boardGenerator = new BoardGenerator();
 
         for (int i = 0; i < 9; i++) {
@@ -99,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
         numberPadTextView.setTextSize(20);
         numberPadTableLayout.addView(numberPadTextView);
 
-        TableRow.LayoutParams numPadTableRowLayoutParams = new TableRow.LayoutParams(
+        numPadTableRowLayoutParams = new TableRow.LayoutParams(
                 TableRow.LayoutParams.WRAP_CONTENT,
                 TableRow.LayoutParams.WRAP_CONTENT,
                 1.0f
@@ -162,17 +165,16 @@ public class MainActivity extends AppCompatActivity {
         }
         numberPadFrameLayout.addView(numberPadTableLayout);
         numberPadTableLayout.setVisibility(View.INVISIBLE);
-
     }
 
     //=================Game Rules Implementation=================
-    public void checkRules(CustomButton checkButton) {
+    public void checkRules(@NonNull CustomButton checkButton) {
         int checkButtonValue = checkButton.getValue();
         int checkButtonCol = checkButton.getCol();
         int checkButtonRow = checkButton.getRow();
 
         /*
-        //unsetConflick
+        //unsetConflict
         언셋하려면 이제
         for문 에서 set하고 나서 continue 하거나 break하거나
         -> 이거도 뭔가 이상하고
@@ -183,25 +185,23 @@ public class MainActivity extends AppCompatActivity {
         암튼 이런쪽으로 잘 생각해보자고
         */
         for (int i=0;i<9;i++) {
-            for (int j=0;j<9;j++) {
-
-            }
             // vertical conflict
-            int compareButtonVertical = buttons[i][checkButtonCol].getValue();
             if (i==checkButtonRow) { continue; }
+            int compareButtonVertical = buttons[i][checkButtonCol].getValue();
 
             if (checkButtonValue == compareButtonVertical) {
                 checkButton.setConflick();
+                buttons[i][checkButtonCol].setConflick();
             }
 
             //horizontal conflict
-            int compareButtonHorizontal = buttons[checkButtonRow][i].getValue();
             if (i==checkButtonCol) { continue; }
+            int compareButtonHorizontal = buttons[checkButtonRow][i].getValue();
 
             if (checkButtonValue == compareButtonHorizontal) {
                 checkButton.setConflick();
+                buttons[checkButtonRow][i].setConflick();
             }
         }
     }
-
 }
