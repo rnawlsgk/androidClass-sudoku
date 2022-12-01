@@ -67,8 +67,8 @@ public class MainActivity extends AppCompatActivity {
                     buttons[i][j].set(0);
                 }
                 tableRow.addView(buttons[i][j], tableRowLayoutParams);
-                final int clickedCol = j;
                 final int clickedRow = i;
+                final int clickedCol = j;
                 buttons[i][j].setOnClickListener(new View.OnClickListener() {
                     @Override
                         public void onClick(View view) {
@@ -122,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         clickedCustomButton.set(numberPadValueInt);
                         numberPadTableLayout.setVisibility(View.INVISIBLE);
+                        checkRules(clickedCustomButton);
                     }
                 });
 
@@ -162,6 +163,28 @@ public class MainActivity extends AppCompatActivity {
         numberPadFrameLayout.addView(numberPadTableLayout);
         numberPadTableLayout.setVisibility(View.INVISIBLE);
 
+    }
+
+    //=================Game Rules Implementation=================
+    public void checkRules(CustomButton checkButton) {
+        int checkButtonValue = checkButton.getValue();
+        int checkBUttonCol = checkButton.getJcol();
+        int checkButtonRow = checkButton.getIrow();
+
+        for (int i=0;i<9;i++) {
+            for (int j=0;j<9;j++) {
+
+            }
+            // horizontal conflict
+            int compareButtonHorizontal = buttons[i][checkBUttonCol].getValue();
+            if (i==checkButtonRow) {
+                continue;
+            }
+            if (checkButtonValue == compareButtonHorizontal) {
+                checkButton.setConflick();
+
+            }
+        }
     }
 
 }

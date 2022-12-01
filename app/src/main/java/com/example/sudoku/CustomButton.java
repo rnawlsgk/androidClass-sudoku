@@ -13,8 +13,8 @@ import androidx.annotation.Nullable;
 
 public class CustomButton extends FrameLayout {
 
-    int irow;
     int jcol;
+    int irow;
     int value;
     private TextView textView;
 
@@ -25,8 +25,8 @@ public class CustomButton extends FrameLayout {
     public CustomButton(Context context, int row, int col) {
         super(context);
 
-        irow = row;
         jcol = col;
+        irow = row;
 
         textView = new TextView(context);
 
