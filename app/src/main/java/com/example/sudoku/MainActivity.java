@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         clickedCustomButton.set(numberPadValueInt);
                         numberPadTableLayout.setVisibility(View.INVISIBLE);
-                        checkRules(clickedCustomButton);
+//                        checkRules(clickedCustomButton);
                     }
                 });
 
@@ -149,6 +149,7 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void onClick(View view) {
                                     clickedCustomButton.set(0);
+                                    checkRules(clickedCustomButton);
                                     numberPadTableLayout.setVisibility(View.INVISIBLE);
                                 }
                             });
@@ -172,58 +173,5 @@ public class MainActivity extends AppCompatActivity {
         int checkButtonValue = checkButton.getValue();
         int checkButtonCol = checkButton.getCol();
         int checkButtonRow = checkButton.getRow();
-
-        /*
-        //unsetConflict
-        충돌나면 충돌나는거들 setConflict 했는데
-        이제 충돌 안났을때 그니까 해제 했을때 충돌 안나는거들 unSet해야 되는데
-        누른거는 확실히 할수 있는데 같이 충돌났던거는 이제 못건들겠단 말이야
-        */
-        // vertical conflict
-        for (int i=0;i<9;i++) {
-            if (i == checkButtonRow) {
-                continue;
-            }
-            int compareButtonVertical = buttons[i][checkButtonCol].getValue();
-
-            if (checkButtonValue == compareButtonVertical) {
-                checkButton.setConflict(true);
-                buttons[i][checkButtonCol].setConflict(true);
-                break;
-            }
-
-            /*else {
-                buttons[i][checkButtonCol].unSetConflict(false);
-                if (checkButton.getIsConflict()){
-                    continue;
-                }
-                checkButton.unSetConflict(false);
-            }*/
-        }
-        //horizontal conflict
-        for (int i=0;i<9;i++) {
-            if (i == checkButtonCol) {
-                continue;
-            }
-            int compareButtonHorizontal = buttons[checkButtonRow][i].getValue();
-
-            if (checkButtonValue == compareButtonHorizontal) {
-                buttons[checkButtonRow][i].setConflict(true);
-                checkButton.setConflict(true);
-                break;
-            }
-
-            /*else {
-                buttons[checkButtonRow][i].unSetConflict(false);
-                if (checkButton.getIsConflict()){
-                    continue;
-                }
-                checkButton.unSetConflict(false);
-            }*/
-        }
-
-
-
-
     }
 }

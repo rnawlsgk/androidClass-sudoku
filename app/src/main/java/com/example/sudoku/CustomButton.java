@@ -16,7 +16,6 @@ public class CustomButton extends FrameLayout {
     int col;
     int row;
     int value;
-    boolean isConflict = false;
 
     private TextView textView;
 
@@ -50,8 +49,6 @@ public class CustomButton extends FrameLayout {
     }
 
     public int getValue() {
-        String stringValue = textView.getText().toString();
-        value = Integer.parseInt(stringValue);
         return value;
     }
 
@@ -63,22 +60,9 @@ public class CustomButton extends FrameLayout {
 
         if (a == 0) {
             textView.setVisibility(INVISIBLE);
+            setBackgroundColor(Color.WHITE);
         } else {
             textView.setVisibility(VISIBLE);
         }
-    }
-
-    public void setConflict(boolean conflict) {
-        setBackgroundColor(Color.RED);
-        isConflict = conflict;
-    }
-
-    public void unSetConflict(boolean conflict) {
-        setBackgroundColor(Color.WHITE);
-        isConflict = conflict;
-    }
-
-    public boolean getIsConflict() {
-        return isConflict;
     }
 }
