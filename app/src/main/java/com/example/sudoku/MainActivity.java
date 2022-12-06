@@ -79,6 +79,15 @@ public class MainActivity extends AppCompatActivity {
                             numberPadTableLayout.setVisibility(View.VISIBLE);
                     }
                 });
+
+                //Memo implementation
+                buttons[i][j].setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View view) {
+                        return true;
+                    }
+                });
+
             }
             tableLayout.addView(tableRow, tableLayoutLayoutParams);
         }
