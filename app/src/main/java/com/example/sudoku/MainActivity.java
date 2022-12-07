@@ -9,13 +9,13 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     BoardGenerator boardGenerator;
 
-    FrameLayout numberPadFrameLayout;
+    FrameLayout frameLayout;
     FrameLayout.LayoutParams numberPadFrameLayoutLayoutParams;
 
     TableLayout tableLayout, numberPadTableLayout;
@@ -33,6 +33,11 @@ public class MainActivity extends AppCompatActivity {
     TableRow.LayoutParams numPadTableRowLayoutParams;
 
     TextView numberPadTextView;
+
+    //Memo Implementation
+    LayoutInflater memoDialogLayoutInflater;
+    LinearLayout memoDialogLinearLayout;
+    Button memoBtnCancel, memoBtnDelete, memoBtnOk;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +50,11 @@ public class MainActivity extends AppCompatActivity {
         tableLayoutLayoutParams = new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, 0, 1.0f);
         tableRowLayoutParams = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.MATCH_PARENT, 1.0f);
         tableRowLayoutParams.setMargins(12, 12, 12, 12);
+
+        //Memo Implementation
+        memoDialogLayoutInflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        memoDialogLinearLayout = (LinearLayout) memoDialogLayoutInflater.inflate(R.layout.dialog_memo, frameLayout, false);
+//        memoDialogLinearLayout.setVisibility(View.INVISIBLE);
 
         //board
         boardGenerator = new BoardGenerator();
@@ -84,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
                 buttons[i][j].setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public boolean onLongClick(View view) {
-
+//                        memoDialogLinearLayout.setVisibility(View.VISIBLE);
 
                         return true;
                     }
@@ -93,9 +103,12 @@ public class MainActivity extends AppCompatActivity {
             }
             tableLayout.addView(tableRow, tableLayoutLayoutParams);
         }
+        //Memo implementation
+        memoBtnCancel = memoDialogLinearLayout.findViewById(R.id.btn_cancel);
+
 
         //==================number Pad=====================
-        numberPadFrameLayout = (FrameLayout) findViewById(R.id.frameLayout);
+        frameLayout = (FrameLayout) findViewById(R.id.frameLayout);
 
         numberPadFrameLayoutLayoutParams = new FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.WRAP_CONTENT,
@@ -175,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
             numberPadTableRow.setLayoutParams(tableLayoutLayoutParams);
             numberPadTableLayout.addView(numberPadTableRow);
         }
-        numberPadFrameLayout.addView(numberPadTableLayout);
+        frameLayout.addView(numberPadTableLayout);
         numberPadTableLayout.setVisibility(View.INVISIBLE);
     }
 
@@ -184,5 +197,9 @@ public class MainActivity extends AppCompatActivity {
         int checkButtonValue = checkButton.getValue();
         int checkButtonCol = checkButton.getCol();
         int checkButtonRow = checkButton.getRow();
+    }
+
+    public void onToggleClick(View v) {
+
     }
 }

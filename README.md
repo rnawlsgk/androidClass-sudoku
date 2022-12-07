@@ -8,3 +8,8 @@
  - [layoutInfrater](https://mainia.tistory.com/5578)
 
  - [frameLayout](https://lktprogrammer.tistory.com/134)
+
+ - [ToggleButton](https://developer.android.com/reference/android/widget/ToggleButton?hl=ko)
+
+LayoutInflater
+ - [기본 생성](https://www.crocus.co.kr/1584) 

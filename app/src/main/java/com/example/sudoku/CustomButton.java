@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,7 +20,7 @@ public class CustomButton extends FrameLayout {
     int row;
     int value;
 
-    private TextView textView;
+    private TextView textView, b;
     LayoutInflater memoLayoutInflater;
 
     public CustomButton(@NonNull Context context) {
@@ -46,6 +47,10 @@ public class CustomButton extends FrameLayout {
         memoLayoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         TableLayout memoTableLayout = (TableLayout) memoLayoutInflater.inflate(R.layout.layout_memo, null);
         addView(memoTableLayout);
+//        memoTableLayout.setVisibility(INVISIBLE);
+//        이거 왜 숫자 몇개만 골라서 보여주는거 안도이???
+//        b = (TextView) memoTableLayout.findViewById(R.id.textViewMemo2);
+//        b.setVisibility(VISIBLE);
     }
 
     public int getRow() {
