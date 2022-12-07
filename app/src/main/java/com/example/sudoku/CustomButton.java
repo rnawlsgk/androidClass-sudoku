@@ -4,8 +4,10 @@ import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,6 +20,7 @@ public class CustomButton extends FrameLayout {
     int value;
 
     private TextView textView;
+    LayoutInflater memoLayoutInflater;
 
     public CustomButton(@NonNull Context context) {
         super(context);
@@ -38,6 +41,11 @@ public class CustomButton extends FrameLayout {
 
         setClickable(true);
         setBackgroundResource(R.drawable.button_selector);
+
+        //Memo
+        memoLayoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        TableLayout memoTableLayout = (TableLayout) memoLayoutInflater.inflate(R.layout.layout_memo, null);
+        addView(memoTableLayout);
     }
 
     public int getRow() {
