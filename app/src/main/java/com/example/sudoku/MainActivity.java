@@ -53,13 +53,13 @@ public class MainActivity extends AppCompatActivity {
         tableRowLayoutParams.setMargins(12, 12, 12, 12);
 
         frameLayout = (FrameLayout) findViewById(R.id.frameLayout);
-        //Memo Implementation
+        //=====================Memo Implementation=====================
         memoDialogLayoutInflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         memoDialogLayoutInflater.inflate(R.layout.dialog_memo, frameLayout, true);
         memoDialogLinearLayout = (LinearLayout) findViewById(R.id.memoDialogLinearLayout);
         memoDialogLinearLayout.setVisibility(View.INVISIBLE);
 
-        //board
+        //=====================board=====================
         boardGenerator = new BoardGenerator();
 
         for (int i = 0; i < 9; i++) {
@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-                //Memo implementation
+                //=====================Memo implementation=====================
                 buttons[i][j].setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public boolean onLongClick(View view) {
@@ -102,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     }
                 });
-
             }
             tableLayout.addView(tableRow, tableLayoutLayoutParams);
         }
@@ -124,8 +123,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //==================number Pad=====================
-
-
         numberPadFrameLayoutLayoutParams = new FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.WRAP_CONTENT,
                 FrameLayout.LayoutParams.WRAP_CONTENT
