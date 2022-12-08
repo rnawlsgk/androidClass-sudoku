@@ -102,18 +102,22 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         >
         <Button
             android:id="@+id/memoBtnDelete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textSize="13sp"
             android:text="delete" />
         <Button
             android:id="@+id/memoBtnCancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textSize="13sp"
             android:text="cancel" />
         <Button
             android:layout_gravity="end"

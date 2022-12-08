@@ -25,15 +25,14 @@ public class MainActivity extends AppCompatActivity {
 
     BoardGenerator boardGenerator;
 
+    TableLayout.LayoutParams tableLayoutLayoutParams;
+    TableRow.LayoutParams tableRowLayoutParams;
+
     //numberPad
     FrameLayout frameLayout;
     FrameLayout.LayoutParams numberPadFrameLayoutLayoutParams;
-
     TableLayout tableLayout, numberPadTableLayout;
-    TableLayout.LayoutParams tableLayoutLayoutParams;
-    TableRow.LayoutParams tableRowLayoutParams;
     TableRow.LayoutParams numPadTableRowLayoutParams;
-
     TextView numberPadTextView;
 
     //Memo Implementation
@@ -43,11 +42,6 @@ public class MainActivity extends AppCompatActivity {
     Button btnMemoCancel, btnMemoDelete, btnMemoOk;
     boolean[] checkedMemoNumber = new boolean[9];
     ToggleButton[] memoToggleButton = new ToggleButton[9];
-
-
-    /*LayoutInflater memoLayoutInflater;
-
-    View getMemoView;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
         memoDialogLayoutInflater.inflate(R.layout.dialog_memo, frameLayout, true);
         memoDialogLinearLayout = (LinearLayout) findViewById(R.id.memoDialogLinearLayout);
         memoDialogLinearLayout.setVisibility(View.INVISIBLE);
-
 
     //=====================board=====================
         boardGenerator = new BoardGenerator();
@@ -100,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
                         public void onClick(View view) {
                             clickedCustomButton = buttons[clickedRow][clickedCol];
                             numberPadTableLayout.setVisibility(View.VISIBLE);
+                            memoDialogLinearLayout.setVisibility(View.INVISIBLE);
                     }
                 });
 
@@ -109,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
                     public boolean onLongClick(View view) {
                         clickedCustomButton = buttons[clickedRow][clickedCol];
                         memoDialogLinearLayout.setVisibility(View.VISIBLE);
+                        numberPadTableLayout.setVisibility(View.INVISIBLE);
                         return true;
                     }
                 });
@@ -132,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
                 memoDialogLinearLayout.setVisibility(View.INVISIBLE);
             }
         });
+
         memoTableLayout = (TableLayout) findViewById(R.id.memoTableLayout);
         int k=0;
         for (int i=0;i<3;i++) {
@@ -199,7 +195,6 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         clickedCustomButton.set(numberPadValueInt);
                         numberPadTableLayout.setVisibility(View.INVISIBLE);
-//                        checkRules(clickedCustomButton);
                     }
                 });
 
@@ -223,7 +218,6 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void onClick(View view) {
                                     clickedCustomButton.set(0);
-                                    checkRules(clickedCustomButton);
                                     numberPadTableLayout.setVisibility(View.INVISIBLE);
                                 }
                             });
@@ -243,10 +237,5 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //=================Game Rules Implementation=================
-    public void checkRules(@NonNull CustomButton checkButton) {
-        int checkButtonValue = checkButton.getValue();
-        int checkButtonCol = checkButton.getCol();
-        int checkButtonRow = checkButton.getRow();
-    }
 
 }
