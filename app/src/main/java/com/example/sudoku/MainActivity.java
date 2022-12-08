@@ -19,7 +19,7 @@ import android.widget.ToggleButton;
 
 public class MainActivity extends AppCompatActivity {
 
-    CustomButton buttons[][] = new CustomButton[9][9];
+    CustomButton[][] buttons = new CustomButton[9][9];
     CustomButton clickedCustomButton;
 
     BoardGenerator boardGenerator;
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     //Memo Implementation
     LayoutInflater memoDialogLayoutInflater;
     LinearLayout memoDialogLinearLayout;
-    Button btnMemoCancel;
+    Button btnMemoCancel, btnMemoDelete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
                 buttons[i][j].setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public boolean onLongClick(View view) {
+                        clickedCustomButton = buttons[clickedRow][clickedCol];
                         memoDialogLinearLayout.setVisibility(View.VISIBLE);
                         return true;
                     }
@@ -110,6 +111,14 @@ public class MainActivity extends AppCompatActivity {
         btnMemoCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                memoDialogLinearLayout.setVisibility(View.INVISIBLE);
+            }
+        });
+        btnMemoDelete = (Button) findViewById(R.id.memoBtnDelete);
+        btnMemoDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clickedCustomButton.deleteMemo();
                 memoDialogLinearLayout.setVisibility(View.INVISIBLE);
             }
         });
