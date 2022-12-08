@@ -13,9 +13,9 @@
  - LayoutInflater
    - [기본 생성](https://www.crocus.co.kr/1584) 
    - [다른 Layout 에 있는 View 의 id 가져오기](https://farmerkyh.tistory.com/11)
-```java
-LayoutInflater inflater;
-inflater.inflate("추가할 레이아웃", "추가될 상위 레이아웃", "추가여부");
-```
+
+'LayoutInflater inflater;'
+'inflater.inflate("추가할 레이아웃", "추가될 상위 레이아웃", "추가여부");'
+
      
     
