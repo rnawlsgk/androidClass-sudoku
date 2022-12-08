@@ -27,6 +27,7 @@ public class CustomButton extends FrameLayout {
     TextView[] memoTextView = new TextView[9];
     TableLayout memoTableLayout;
 
+
     public CustomButton(@NonNull Context context) {
         super(context);
     }
@@ -57,7 +58,7 @@ public class CustomButton extends FrameLayout {
             TableRow memoTableRow = (TableRow) memoTableLayout.getChildAt(i);
             for (int j=0;j<3;j++, k++) {
                 memoTextView[k] = (TextView) memoTableRow.getChildAt(j);
-//                memoTextView[k].setVisibility(INVISIBLE);
+                memoTextView[k].setVisibility(INVISIBLE);
             }
         }
 
@@ -92,6 +93,16 @@ public class CustomButton extends FrameLayout {
     public void deleteMemo() {
         for (int i=0;i<9;i++) {
                 memoTextView[i].setVisibility(INVISIBLE);
+        }
+    }
+
+    public void okMemo(boolean[] setMemo) {
+        for (int i=0;i<9;i++) {
+            if (setMemo[i]) {
+                memoTextView[i].setVisibility(VISIBLE);
+            } else {
+                memoTextView[i].setVisibility(INVISIBLE);
+            }
         }
     }
 

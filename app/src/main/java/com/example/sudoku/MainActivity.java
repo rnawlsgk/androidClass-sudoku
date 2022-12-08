@@ -10,6 +10,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
@@ -38,7 +39,15 @@ public class MainActivity extends AppCompatActivity {
     //Memo Implementation
     LayoutInflater memoDialogLayoutInflater;
     LinearLayout memoDialogLinearLayout;
-    Button btnMemoCancel, btnMemoDelete;
+    TableLayout memoTableLayout;
+    Button btnMemoCancel, btnMemoDelete, btnMemoOk;
+    boolean[] checkedMemoNumber = new boolean[9];
+    ToggleButton[] memoToggleButton = new ToggleButton[9];
+
+
+    /*LayoutInflater memoLayoutInflater;
+
+    View getMemoView;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,13 +62,14 @@ public class MainActivity extends AppCompatActivity {
         tableRowLayoutParams.setMargins(12, 12, 12, 12);
 
         frameLayout = (FrameLayout) findViewById(R.id.frameLayout);
-        //=====================Memo Implementation=====================
+    //=====================Memo Implementation=====================
         memoDialogLayoutInflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         memoDialogLayoutInflater.inflate(R.layout.dialog_memo, frameLayout, true);
         memoDialogLinearLayout = (LinearLayout) findViewById(R.id.memoDialogLinearLayout);
         memoDialogLinearLayout.setVisibility(View.INVISIBLE);
 
-        //=====================board=====================
+
+    //=====================board=====================
         boardGenerator = new BoardGenerator();
 
         for (int i = 0; i < 9; i++) {
@@ -93,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-                //=====================Memo implementation=====================
+    //=====================Memo implementation=====================
                 buttons[i][j].setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public boolean onLongClick(View view) {
@@ -106,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
             tableLayout.addView(tableRow, tableLayoutLayoutParams);
         }
 
+    //=====================Memo implementation=====================
         btnMemoCancel = (Button) findViewById(R.id.memoBtnCancel);
         btnMemoCancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,8 +132,34 @@ public class MainActivity extends AppCompatActivity {
                 memoDialogLinearLayout.setVisibility(View.INVISIBLE);
             }
         });
+        memoTableLayout = (TableLayout) findViewById(R.id.memoTableLayout);
+        int k=0;
+        for (int i=0;i<3;i++) {
+            TableRow memoTableRow = (TableRow) memoTableLayout.getChildAt(i);
+            for (int j=0;j<3;j++, k++) {
+                final int checked = k;
+                memoToggleButton[k] = (ToggleButton) memoTableRow.getChildAt(j);
+                memoToggleButton[k].setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                        checkedMemoNumber[checked] = isChecked;
+                    }
+                });
+            }
+        }
 
-        //==================number Pad=====================
+        btnMemoOk = (Button) findViewById(R.id.memoBtnOk);
+        btnMemoOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                for (int i=0;i<9;i++) {
+                    clickedCustomButton.okMemo(checkedMemoNumber);
+                    memoDialogLinearLayout.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+
+    //==================number Pad=====================
         numberPadFrameLayoutLayoutParams = new FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.WRAP_CONTENT,
                 FrameLayout.LayoutParams.WRAP_CONTENT
@@ -212,7 +249,4 @@ public class MainActivity extends AppCompatActivity {
         int checkButtonRow = checkButton.getRow();
     }
 
-    public void onToggleClick(View v) {
-
-    }
 }
