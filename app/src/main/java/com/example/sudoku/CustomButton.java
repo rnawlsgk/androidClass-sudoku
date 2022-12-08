@@ -14,14 +14,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.w3c.dom.Text;
+
 public class CustomButton extends FrameLayout {
 
     int col;
     int row;
     int value;
 
-    private TextView textView, b;
+    private TextView textView;
     LayoutInflater memoLayoutInflater;
+    TextView[] memoTextView = new TextView[9];
+    TableLayout memoTableLayout;
 
     public CustomButton(@NonNull Context context) {
         super(context);
@@ -45,12 +49,18 @@ public class CustomButton extends FrameLayout {
 
         //Memo
         memoLayoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        TableLayout memoTableLayout = (TableLayout) memoLayoutInflater.inflate(R.layout.layout_memo, null);
+        memoTableLayout = (TableLayout) memoLayoutInflater.inflate(R.layout.layout_memo, null);
         addView(memoTableLayout);
-//        memoTableLayout.setVisibility(INVISIBLE);
-//        이거 왜 숫자 몇개만 골라서 보여주는거 안도이???
-//        b = (TextView) memoTableLayout.findViewById(R.id.textViewMemo2);
-//        b.setVisibility(VISIBLE);
+
+        int k=0;
+        for (int i=0;i<3;i++) {
+            TableRow memoTableRow = (TableRow) memoTableLayout.getChildAt(i);
+            for (int j=0;j<3;j++, k++) {
+                memoTextView[k] = (TextView) memoTableRow.getChildAt(j);
+                memoTextView[k].setVisibility(INVISIBLE);
+            }
+        }
+
     }
 
     public int getRow() {

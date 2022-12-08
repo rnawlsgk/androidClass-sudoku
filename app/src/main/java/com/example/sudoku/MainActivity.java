@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     BoardGenerator boardGenerator;
 
+    //numberPad
     FrameLayout frameLayout;
     FrameLayout.LayoutParams numberPadFrameLayoutLayoutParams;
 
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     //Memo Implementation
     LayoutInflater memoDialogLayoutInflater;
     LinearLayout memoDialogLinearLayout;
-    Button memoBtnCancel, memoBtnDelete, memoBtnOk;
+    Button btnMemoCancel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,10 +52,12 @@ public class MainActivity extends AppCompatActivity {
         tableRowLayoutParams = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.MATCH_PARENT, 1.0f);
         tableRowLayoutParams.setMargins(12, 12, 12, 12);
 
+        frameLayout = (FrameLayout) findViewById(R.id.frameLayout);
         //Memo Implementation
         memoDialogLayoutInflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        memoDialogLinearLayout = (LinearLayout) memoDialogLayoutInflater.inflate(R.layout.dialog_memo, frameLayout, false);
-//        memoDialogLinearLayout.setVisibility(View.INVISIBLE);
+        memoDialogLayoutInflater.inflate(R.layout.dialog_memo, frameLayout, true);
+        memoDialogLinearLayout = (LinearLayout) findViewById(R.id.memoDialogLinearLayout);
+        memoDialogLinearLayout.setVisibility(View.INVISIBLE);
 
         //board
         boardGenerator = new BoardGenerator();
@@ -94,8 +97,7 @@ public class MainActivity extends AppCompatActivity {
                 buttons[i][j].setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public boolean onLongClick(View view) {
-//                        memoDialogLinearLayout.setVisibility(View.VISIBLE);
-
+                        memoDialogLinearLayout.setVisibility(View.VISIBLE);
                         return true;
                     }
                 });
@@ -103,12 +105,17 @@ public class MainActivity extends AppCompatActivity {
             }
             tableLayout.addView(tableRow, tableLayoutLayoutParams);
         }
-        //Memo implementation
-        memoBtnCancel = memoDialogLinearLayout.findViewById(R.id.btn_cancel);
 
+        btnMemoCancel = (Button) findViewById(R.id.memoBtnCancel);
+        btnMemoCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                memoDialogLinearLayout.setVisibility(View.INVISIBLE);
+            }
+        });
 
         //==================number Pad=====================
-        frameLayout = (FrameLayout) findViewById(R.id.frameLayout);
+
 
         numberPadFrameLayoutLayoutParams = new FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.WRAP_CONTENT,
