@@ -21,12 +21,12 @@ public class CustomButton extends FrameLayout {
     int col;
     int row;
     int value;
+    boolean isConflict = false;
 
     private TextView textView;
     LayoutInflater memoLayoutInflater;
     TextView[] memoTextView = new TextView[9];
     TableLayout memoTableLayout;
-
 
     public CustomButton(@NonNull Context context) {
         super(context);
@@ -90,6 +90,21 @@ public class CustomButton extends FrameLayout {
         }
     }
 
+    //game rule
+    public void setIsConflict(boolean conflict) {
+        isConflict = conflict;
+    }
+
+    public boolean isConflict() {
+        return isConflict;
+    }
+
+    public void setConflict(boolean conflict) {
+        setBackgroundColor(Color.RED);
+        isConflict = conflict;
+    }
+
+    //memo
     public void deleteMemo() {
         for (int i=0;i<9;i++) {
                 memoTextView[i].setVisibility(INVISIBLE);
@@ -105,5 +120,4 @@ public class CustomButton extends FrameLayout {
             }
         }
     }
-
 }

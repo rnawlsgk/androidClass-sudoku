@@ -1,6 +1,5 @@
 package com.example.sudoku;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -18,6 +17,9 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class MainActivity extends AppCompatActivity {
 
     CustomButton[][] buttons = new CustomButton[9][9];
@@ -34,6 +36,15 @@ public class MainActivity extends AppCompatActivity {
     TableLayout tableLayout, numberPadTableLayout;
     TableRow.LayoutParams numPadTableRowLayoutParams;
     TextView numberPadTextView;
+
+    //Game Rule Implementation
+    class Dir {
+        int n, m;
+        public Dir(int n, int m) {
+           this.n = n;
+           this.m = m;
+        }
+    }
 
     //Memo Implementation
     LayoutInflater memoDialogLayoutInflater;
@@ -195,6 +206,11 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         clickedCustomButton.set(numberPadValueInt);
                         numberPadTableLayout.setVisibility(View.INVISIBLE);
+
+                        //gameRule
+                        verticalCompare();
+                        horizontalCompare();
+                        boxCompareAll();
                     }
                 });
 
@@ -219,6 +235,10 @@ public class MainActivity extends AppCompatActivity {
                                 public void onClick(View view) {
                                     clickedCustomButton.set(0);
                                     numberPadTableLayout.setVisibility(View.INVISIBLE);
+                                    //gameRule
+                                    verticalCompare();
+                                    horizontalCompare();
+                                    boxCompareAll();
                                 }
                             });
                             break;
@@ -237,5 +257,73 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //=================Game Rules Implementation=================
+    private void boxCompareAll() {
+        for (int i = 0; i < 9; i += 3) {
+            for (int j = 0; j < 9; j += 3) {
+                boxCompare(i, j);
+            }
+        }
+        //이게 마지막 체크라서 체크 후 isRed 초기화
+        for (int n = 0; n < 9; n++) {
+            for (int m = 0; m < 9; m++) {
+                buttons[n][m].setIsConflict(false);
+            }
+        }
+    }
+
+    private void horizontalCompare() {
+        for (int i = 0; i < 9; i++) {
+            Map<Integer, Dir> map = new HashMap<>();
+            for (int j = 0; j < 9; j++) {
+                Integer value = buttons[j][i].getValue();
+                if (map.containsKey(value) && value != 0) {
+                    Dir dir = map.get(value);
+                    buttons[dir.n][dir.m].setConflict(true);
+                    buttons[j][i].setConflict(true);
+                } else {
+                    map.put(value, new Dir(j, i));
+                    if (!buttons[j][i].isConflict()) {
+                        buttons[j][i].setBackgroundColor(Color.WHITE);
+                    }
+                }
+            }
+        }
+    }
+
+    private void verticalCompare() {
+        for (int i = 0; i < 9; i++) {
+            Map<Integer, Dir> map = new HashMap<>();
+            for (int j = 0; j < 9; j++) {
+                Integer value = buttons[i][j].getValue();
+                if (map.containsKey(value) && value != 0) {
+                    Dir dir = map.get(value);
+                    buttons[dir.n][dir.m].setConflict(true);
+                    buttons[i][j].setConflict(true);
+                } else {
+                    map.put(value, new Dir(i, j));
+                    buttons[i][j].setBackgroundColor(Color.WHITE);
+                }
+            }
+        }
+    }
+
+    private void boxCompare(int ni, int mj) {
+        Map<Integer, Dir> map = new HashMap<>();
+        for (int i = ni; i < ni + 3; i++) {
+            for (int j = mj; j < mj + 3; j++) {
+                Integer value = buttons[i][j].getValue();
+                if (map.containsKey(value) && value != 0) {
+                    Dir dir = map.get(value);
+                    buttons[dir.n][dir.m].setBackgroundColor(Color.RED);
+                    buttons[i][j].setBackgroundColor(Color.RED);
+                } else {
+                    map.put(value, new Dir(i, j));
+                    if (!buttons[i][j].isConflict) {
+                        buttons[i][j].setBackgroundColor(Color.WHITE);
+                    }
+                }
+            }
+        }
+    }
 
 }
