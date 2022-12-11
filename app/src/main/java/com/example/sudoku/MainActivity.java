@@ -207,10 +207,7 @@ public class MainActivity extends AppCompatActivity {
                         clickedCustomButton.set(numberPadValueInt);
                         numberPadTableLayout.setVisibility(View.INVISIBLE);
 
-                        //gameRule
-                        verticalCompare();
-                        horizontalCompare();
-                        boxCompareAll();
+                        gameRule();
                     }
                 });
 
@@ -235,10 +232,8 @@ public class MainActivity extends AppCompatActivity {
                                 public void onClick(View view) {
                                     clickedCustomButton.set(0);
                                     numberPadTableLayout.setVisibility(View.INVISIBLE);
-                                    //gameRule
-                                    verticalCompare();
-                                    horizontalCompare();
-                                    boxCompareAll();
+
+                                    gameRule();
                                 }
                             });
                             break;
@@ -257,13 +252,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //=================Game Rules Implementation=================
+    private void gameRule() {
+        verticalCompare();
+        horizontalCompare();
+        boxCompareAll();
+    }
+
     private void boxCompareAll() {
         for (int i = 0; i < 9; i += 3) {
             for (int j = 0; j < 9; j += 3) {
                 boxCompare(i, j);
             }
         }
-        //이게 마지막 체크라서 체크 후 isRed 초기화
         for (int n = 0; n < 9; n++) {
             for (int m = 0; m < 9; m++) {
                 buttons[n][m].setIsConflict(false);
