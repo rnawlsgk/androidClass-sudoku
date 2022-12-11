@@ -207,7 +207,7 @@ public class MainActivity extends AppCompatActivity {
                         clickedCustomButton.set(numberPadValueInt);
                         numberPadTableLayout.setVisibility(View.INVISIBLE);
 
-                        gameRule();
+                        gameRule(clickedCustomButton);
                     }
                 });
 
@@ -233,7 +233,7 @@ public class MainActivity extends AppCompatActivity {
                                     clickedCustomButton.set(0);
                                     numberPadTableLayout.setVisibility(View.INVISIBLE);
 
-                                    gameRule();
+                                    gameRule(clickedCustomButton);
                                 }
                             });
                             break;
@@ -252,9 +252,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //=================Game Rules Implementation=================
-    private void gameRule() {
-        verticalCompare();
-        horizontalCompare();
+    private void gameRule(CustomButton clickedButton) {
+        verticalCompare(clickedButton);
+        horizontalCompare(clickedButton);
         boxCompareAll();
     }
 
@@ -271,38 +271,39 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void horizontalCompare() {
+    private void horizontalCompare(CustomButton clickedButton) {
+        int clickedCol = clickedButton.getCol();
+
+        Map<Integer, Dir> map = new HashMap<>();
         for (int i = 0; i < 9; i++) {
-            Map<Integer, Dir> map = new HashMap<>();
-            for (int j = 0; j < 9; j++) {
-                Integer value = buttons[j][i].getValue();
-                if (map.containsKey(value) && value != 0) {
-                    Dir dir = map.get(value);
-                    buttons[dir.n][dir.m].setConflict(true);
-                    buttons[j][i].setConflict(true);
-                } else {
-                    map.put(value, new Dir(j, i));
-                    if (!buttons[j][i].isConflict()) {
-                        buttons[j][i].setBackgroundColor(Color.WHITE);
-                    }
+            Integer value = buttons[i][clickedCol].getValue();
+            if (map.containsKey(value) && value != 0) {
+                Dir dir = map.get(value);
+                buttons[dir.n][dir.m].setConflict(true);
+                buttons[i][clickedCol].setConflict(true);
+            } else {
+                map.put(value, new Dir(i, clickedCol));
+                if (!buttons[i][clickedCol].isConflict()) {
+                    buttons[i][clickedCol].setBackgroundColor(Color.WHITE);
                 }
             }
         }
+
     }
 
-    private void verticalCompare() {
+    private void verticalCompare(CustomButton clickedButton) {
+        int clickedRow = clickedButton.getRow();
+
+        Map<Integer, Dir> map = new HashMap<>();
         for (int i = 0; i < 9; i++) {
-            Map<Integer, Dir> map = new HashMap<>();
-            for (int j = 0; j < 9; j++) {
-                Integer value = buttons[i][j].getValue();
-                if (map.containsKey(value) && value != 0) {
-                    Dir dir = map.get(value);
-                    buttons[dir.n][dir.m].setConflict(true);
-                    buttons[i][j].setConflict(true);
-                } else {
-                    map.put(value, new Dir(i, j));
-                    buttons[i][j].setBackgroundColor(Color.WHITE);
-                }
+            Integer value = buttons[clickedRow][i].getValue();
+            if (map.containsKey(value) && value != 0) {
+                Dir dir = map.get(value);
+                buttons[dir.n][dir.m].setConflict(true);
+                buttons[clickedRow][i].setConflict(true);
+            } else {
+                map.put(value, new Dir(clickedRow, i));
+                buttons[clickedRow][i].setBackgroundColor(Color.WHITE);
             }
         }
     }
