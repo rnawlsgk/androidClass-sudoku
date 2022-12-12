@@ -5,8 +5,9 @@
       <map>
         <entry key="..\:/Users/hath8/AndroidStudioProjects/Sudoku/app/src/main/res/drawable/button_selector.xml" value="0.1" />
         <entry key="..\:/Users/hath8/AndroidStudioProjects/Sudoku/app/src/main/res/layout/activity_main.xml" value="0.1778115501519757" />
-        <entry key="..\:/Users/hath8/AndroidStudioProjects/Sudoku/app/src/main/res/layout/dialog_memo.xml" value="0.32563405797101447" />
-        <entry key="..\:/Users/hath8/AndroidStudioProjects/Sudoku/app/src/main/res/layout/layout_memo.xml" value="0.29572649572649573" />
+        <entry key="..\:/Users/hath8/AndroidStudioProjects/Sudoku/app/src/main/res/layout/activity_start.xml" value="0.3619791666666667" />
+        <entry key="..\:/Users/hath8/AndroidStudioProjects/Sudoku/app/src/main/res/layout/dialog_memo.xml" value="0.75" />
+        <entry key="..\:/Users/hath8/AndroidStudioProjects/Sudoku/app/src/main/res/layout/layout_memo.xml" value="0.27564102564102566" />
         <entry key="..\:/Users/hath8/AndroidStudioProjects/Sudoku/app/src/main/res/layout/numberpad.xml" value="0.25905797101449274" />
         <entry key="..\:/Users/hath8/AndroidStudioProjects/androidClass-sudoku/app/src/main/res/layout/activity_main.xml" value="0.14" />
         <entry key="..\:/Users/hath8/AndroidStudioProjects/androidClass-sudoku/app/src/main/res/layout/numberpad.xml" value="0.16" />

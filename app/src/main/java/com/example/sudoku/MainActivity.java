@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import java.util.HashMap;
@@ -53,6 +54,19 @@ public class MainActivity extends AppCompatActivity {
     Button btnMemoCancel, btnMemoDelete, btnMemoOk;
     boolean[] checkedMemoNumber = new boolean[9];
     ToggleButton[] memoToggleButton = new ToggleButton[9];
+
+    //뒤로가기 2번 눌러야 앱 종료
+    private long backBtnTime;
+    @Override
+    public void onBackPressed() {
+        long curTime = System.currentTimeMillis();
+        long gapTime = curTime - backBtnTime;
+        if(0<=gapTime&&2000>=gapTime){
+            super.onBackPressed();
+        }else{
+            backBtnTime =curTime;
+            Toast.makeText(MainActivity.this,"한번 더 누르면 종료됩니다.",Toast.LENGTH_SHORT).show(); }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
