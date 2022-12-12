@@ -71,3 +71,34 @@ i+1	j+2	6
 i+2	j	7
 i+2	j+1	8
 i+2	j+2	9
+==================================== mainActivity에 상단바 추가하기 맨
+<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="#444444">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4" >
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/btn_check_all"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="done"
+                android:textSize="11sp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+     android:layout_marginTop="35dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="5dp

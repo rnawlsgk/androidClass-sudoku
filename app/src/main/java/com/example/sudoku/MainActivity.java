@@ -73,14 +73,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tableLayout = (TableLayout) findViewById(R.id.tableLayout);
-        numberPadTableLayout = new TableLayout(this);
-
-        tableLayoutLayoutParams = new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, 0, 1.0f);
-        tableRowLayoutParams = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.MATCH_PARENT, 1.0f);
-        tableRowLayoutParams.setMargins(12, 12, 12, 12);
-
         frameLayout = (FrameLayout) findViewById(R.id.frameLayout);
+
     //=====================Memo Implementation=====================
         memoDialogLayoutInflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         memoDialogLayoutInflater.inflate(R.layout.dialog_memo, frameLayout, true);
@@ -88,6 +82,18 @@ public class MainActivity extends AppCompatActivity {
         memoDialogLinearLayout.setVisibility(View.INVISIBLE);
 
     //=====================board=====================
+        tableLayout = (TableLayout) findViewById(R.id.tableLayout);
+        numberPadTableLayout = new TableLayout(this);
+
+        tableLayoutLayoutParams = new TableLayout.LayoutParams(
+                TableLayout.LayoutParams.WRAP_CONTENT,
+                0,
+                1.0f);
+        tableRowLayoutParams = new TableRow.LayoutParams(
+                TableRow.LayoutParams.WRAP_CONTENT,
+                TableRow.LayoutParams.MATCH_PARENT,
+                1.0f);
+        tableRowLayoutParams.setMargins(12, 12, 12, 12);
         boardGenerator = new BoardGenerator();
 
         for (int i = 0; i < 9; i++) {
